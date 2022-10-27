@@ -1,6 +1,5 @@
 let tour;
 let texte = "Pierre (p), Feuille (f) ou Ciseau (c) ?";
-let choix;
 let scoreJoueur = 0;
 let scoreOrdinateur = 0;
 
@@ -26,9 +25,18 @@ const duel = (choixJoueur, choixOrdinateur) => {
 const selectionOrdinateur = () => {
     let choix = choisir(3);
     switch(choix){
-        case 0: return "p";
-        case 1: return "f";
-        case 2: return "c";
+        case 0:
+            return "p";
+            console.log("L'ordinateur a choisi Pierre");
+        break;
+        case 1:
+            return "f";
+            console.log("L'ordinateur a choisi Feuille");
+        break;
+        case 2:
+            return "c";
+            console.log("L'ordinateur a choisi Ciseau");
+        break;
     }
 }
 
@@ -45,16 +53,19 @@ function jouerTour(){
         switch(réponse.toLowerCase()){
             case "pierre":
             case "p":
+                console.log("Vous avez choisi Pierre");
                 duel("p", selectionOrdinateur())
             break;
 
             case "feuille":
             case "f":
+                console.log("Vous avez choisi Feuille");
                 duel("f", selectionOrdinateur())
             break;
 
             case "ciseau":
             case "c":
+                console.log("Vous avez choisi Ciseau");
                 duel("c", selectionOrdinateur())
             break;
 
@@ -69,9 +80,9 @@ function choisir(){
     return Math.floor(Math.random() * 3);
 }
 
-
 function égalité(){
     alert("Égalité!!");
+    console.log("===================== Égalité =====================")
     jouerTour();
 }
 
@@ -83,10 +94,8 @@ function gagne(gagnant){
         alert("Vous avez perdu!");
         scoreOrdinateur++;
     }
-    console.log("Joueur : " + scoreJoueur + "| Score : " + scoreOrdinateur);
+    console.log("Joueur : " + scoreJoueur + " | Score : " + scoreOrdinateur);
     if(scoreOrdinateur < 4 && scoreJoueur < 4){
-
-        tour++;
         jouerTour();
     } else if (scoreJoueur > scoreOrdinateur){
         gagnePartie(true);
@@ -97,5 +106,6 @@ function gagnePartie(gagnant){
     if(gagnant){
         alert("Vous avez gagné la partie!");
     } else alert("Vous avez perdu la partie!")
+    jouer();
 }
 
