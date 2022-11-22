@@ -1,5 +1,5 @@
 let tour;
-let texte = "Pierre (p), Feuille (f) ou Ciseau (c) ?";
+let texte = "Pierre (p), Feuille (f) ou Ciseau (c)";
 let scoreJoueur = 0;
 let scoreOrdinateur = 0;
 
@@ -43,12 +43,18 @@ const selectionOrdinateur = () => {
 jouer();
 
 function jouer(){
-    tour = 1;
+    init();
     jouerTour();
 }
 
+function init(){
+    tour = 1;
+    scoreJoueur = 0;
+    scoreOrdinateur = 0;
+}
+
 function jouerTour(){
-    let réponse = prompt(texte);
+    let réponse = prompt(affichageScore(texte +  " ?"));
     if(typeof(réponse) === "string"){
         switch(réponse.toLowerCase()){
             case "pierre":
@@ -70,10 +76,14 @@ function jouerTour(){
             break;
 
             default:
-                alert("Veuillez renseigner : " + texte);
+                alert(affichageScore("Veuillez renseigner : " + texte));
+                jouerTour();
             break;
         }
-    } else alert("Veuillez renseigner : " + texte);
+    } else {
+        alert(affichageScore("Veuillez renseigner : " + texte));
+        jouerTour();
+    }
 }
 
 function choisir(){
@@ -81,21 +91,21 @@ function choisir(){
 }
 
 function égalité(){
-    alert("Égalité!!");
+    alert(affichageScore("Égalité!!"));
     console.log("===================== Égalité =====================")
     jouerTour();
 }
 
 function gagne(gagnant){
     if(gagnant){
-        alert("Vous avez gagné!");
         scoreJoueur++;
+        alert(affichageScore("Vous avez gagné!"));
     } else {
-        alert("Vous avez perdu!");
         scoreOrdinateur++;
+        alert(affichageScore("Vous avez perdu!"));
     }
     console.log("Joueur : " + scoreJoueur + " | Score : " + scoreOrdinateur);
-    if(scoreOrdinateur < 4 && scoreJoueur < 4){
+    if(scoreOrdinateur < 3 && scoreJoueur < 3){
         jouerTour();
     } else if (scoreJoueur > scoreOrdinateur){
         gagnePartie(true);
@@ -104,8 +114,13 @@ function gagne(gagnant){
 
 function gagnePartie(gagnant){
     if(gagnant){
-        alert("Vous avez gagné la partie!");
-    } else alert("Vous avez perdu la partie!")
-    jouer();
+        alert(affichageScore("Vous avez gagné la partie!"));
+    } else alert(affichageScore("Vous avez perdu la partie!"))
+    if(confirm("Voulez-vous rejouer?")) jouer();
 }
 
+function affichageScore(aAfficher){
+    return aAfficher + "\n" + 
+    "___________________________\n" +
+    "Joueur : " + scoreJoueur + " | Ordinateur : " + scoreOrdinateur;
+}

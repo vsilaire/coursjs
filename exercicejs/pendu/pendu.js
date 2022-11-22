@@ -1,4 +1,4 @@
-let mistakeLimit;
+let attempt;
 let lost, won = false;
 let word, str;
 
@@ -10,10 +10,10 @@ jouer();
 function jouer(){
     init();
 
-    while(!(won && lost)){
-    console.log(mistakeLimit + "::::")
+    while(!won || !lost){
+        console.log(attempt + "::::")
 
-        let letter = prompt("Mot à trouver : " + str + "\nIl vous reste " + mistakeLimit +" tentatives. \nVeuillez entrer une lettre ").toLowerCase();
+        let letter = prompt("Mot à trouver : " + str + "\nIl vous reste " + attempt +" tentatives. \nVeuillez entrer une lettre ");
         console.log("letter: " + letter)
         if(letter.length == 1){
             if(word.includes(letter)){
@@ -26,10 +26,10 @@ function jouer(){
                 alert("Mot à trouver : " + str + "\nlettre trouvée!")
             } else {
                 alert("Pas d'bol!")
-                mistakeLimit--;
+                attempt--;
             }
         } else alert("Erreur!!!");
-        if(mistakeLimit < 0){
+        if(attempt < 0){
             lost = true;
             loose();
         } 
@@ -41,11 +41,12 @@ function jouer(){
         
     display();
     }
+    console.log("fin while")
 }
 
 
 function init(){
-    mistakeLimit = 2;
+    attempt = 2;
 
     alert("Nouvelle partie");
     word = prompt("Veuillez entrer un mot :");
@@ -56,7 +57,7 @@ function init(){
 }
 
 function display(){
-    alert("Mot à trouver : " + str + "\nnombre d'essais restants : " + mistakeLimit);
+    alert("Mot à trouver : " + str + "\nnombre d'essais restants : " + attempt);
 }
 
 function win(){
