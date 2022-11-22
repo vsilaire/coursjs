@@ -46,7 +46,7 @@ function jouer(){
     tour = 1;
     jouerTour();
 }
-
+//Attention au nom de variable avec des accents!
 function jouerTour(){
     let réponse = prompt(texte);
     if(typeof(réponse) === "string"){
@@ -80,6 +80,7 @@ function choisir(){
     return Math.floor(Math.random() * 3);
 }
 
+//Attention au nom de fonction avec des accents!
 function égalité(){
     alert("Égalité!!");
     console.log("===================== Égalité =====================")
@@ -103,9 +104,13 @@ function gagne(gagnant){
 }
 
 function gagnePartie(gagnant){
-    if(gagnant){
-        alert("Vous avez gagné la partie!");
-    } else alert("Vous avez perdu la partie!")
+    // if(gagnant){
+    //     alert("Vous avez gagné la partie!");
+    // } else alert("Vous avez perdu la partie!")
+
+    (gagnant) ? alert("Vous avez gagné la partie!") : ("Vous avez perdu la partie!");
     jouer();
+
+
 }
 
