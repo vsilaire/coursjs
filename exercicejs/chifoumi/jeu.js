@@ -90,6 +90,7 @@ function choisir(){
     return Math.floor(Math.random() * 3);
 }
 
+//Attention au nom de fonction avec des accents!
 function égalité(){
     alert(affichageScore("Égalité!!"));
     console.log("===================== Égalité =====================")
@@ -117,6 +118,7 @@ function gagnePartie(gagnant){
         alert(affichageScore("Vous avez gagné la partie!"));
     } else alert(affichageScore("Vous avez perdu la partie!"))
     if(confirm("Voulez-vous rejouer?")) jouer();
+
 }
 
 function affichageScore(aAfficher){
